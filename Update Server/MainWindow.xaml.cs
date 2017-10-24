@@ -80,7 +80,7 @@ namespace Server
         private void ButtonBase3_OnClick(object sender, RoutedEventArgs e)
         {
             _xmlDocument = new XmlDocument();
-            _xmlDocument.LoadXml(_manifestLocation);
+            _xmlDocument.Load(_manifestLocation);
             XmlNodeList list = _xmlDocument.GetElementsByTagName("update");
             AppId.Text = (list[0] as XmlElement).GetAttribute("appId");
             list = list[0].ChildNodes;
@@ -110,6 +110,11 @@ namespace Server
                     Args.Document = ObjFdoc;
                 }
             }
+            FlowDocument ObjFdoc2 = new FlowDocument();
+            Paragraph ObjPara12 = new Paragraph();
+            ObjPara12.Inlines.Add(XmlCreator.GetPrettyXml(_xmlDocument));
+            ObjFdoc2.Blocks.Add(ObjPara12);
+            XmlFile.Document = ObjFdoc2;
         }
     }
 }

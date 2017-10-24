@@ -13,8 +13,6 @@ D:\Projects\Upwork\Master Diction\Master Diction\Update Server\obj\Debug\Update 
 D:\Projects\Upwork\Master Diction\Master Diction\Update Server\obj\Debug\Server.exe
 D:\Projects\Upwork\Master Diction\Master Diction\Update Server\obj\Debug\Server.pdb
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Debug\Server.exe.config
-D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.exe
-D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.pdb
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Debug\Server.exe
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Debug\Server.pdb
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Update Server.csprojResolveAssemblyReference.cache
@@ -26,3 +24,5 @@ D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\MainW
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.g.resources
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.Properties.Resources.resources
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Update Server.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.pdb

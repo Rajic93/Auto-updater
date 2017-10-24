@@ -1,2 +1,0 @@
-D:\Projects\Windows\Auto update\Auto update\bin\Debug\Auto update.exe.config
-D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto update\bin\Debug\Auto update.exe.config

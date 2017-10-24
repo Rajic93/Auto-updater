@@ -1,0 +1,14 @@
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\bin\Debug\Update progress.exe.config
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\bin\Debug\Update progress.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\bin\Debug\Update progress.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.csprojResolveAssemblyReference.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\MainWindow.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\App.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress_MarkupCompile.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress_MarkupCompile.lref
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\MainWindow.baml
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.g.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update_progress.Properties.Resources.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.pdb

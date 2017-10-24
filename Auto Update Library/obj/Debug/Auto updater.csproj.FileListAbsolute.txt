@@ -1,0 +1,30 @@
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\bin\Debug\Auto updater.dll
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\bin\Debug\Auto updater.pdb
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto updater.dll
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto updater.pdb
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto_updater.AutoUpdateAcceptForm.resources
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto_updater.lblDownloading.resources
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto_updater.InfoForm.resources
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto_updater.Properties.Resources.resources
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto updater.csproj.GenerateResource.Cache
+D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Debug\Auto updater.csprojResolveAssemblyReference.cache
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\bin\Debug\Auto updater.dll
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\bin\Debug\Auto updater.pdb
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto updater.csprojResolveAssemblyReference.cache
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto_updater.AutoUpdateAcceptForm.resources
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto_updater.lblDownloading.resources
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto_updater.InfoForm.resources
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto_updater.Properties.Resources.resources
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto updater.csproj.GenerateResource.Cache
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto updater.dll
+D:\Projects\Upwork\Master Diction\Master Diction\Auto updater\obj\Debug\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\bin\Debug\Auto updater.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\bin\Debug\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto_updater.AutoUpdateAcceptForm.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto_updater.lblDownloading.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto_updater.InfoForm.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto_updater.Properties.Resources.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.csprojResolveAssemblyReference.cache
