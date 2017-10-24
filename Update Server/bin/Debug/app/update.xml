@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoUpdate>
-  <update appId="app">
+  <update appId="appmfl">
     <version value="1.2.3" />
     <url value="jsjvidpl" />
     <exe value="sbjvdj" />
-    <description value="dvnsjkvn&#xD;&#xA;" />
-    <launchArgs value="djvndskjvb&#xD;&#xA;" />
-    <directory name="root" value="">
+    <description value="dvnsjkvn&#xD;&#xA;&#xD;&#xA;" />
+    <launchArgs value="djvndskjvb&#xD;&#xA;&#xD;&#xA;" />
+    <directory name="root">
       <directory name="AutoUpdater">
         <directory name="AutoUpdater">
           <directory name=".svn">

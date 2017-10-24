@@ -55,9 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppInfo.cs" />
-    <Compile Include="FileVersionInfo.cs" />
-    <Compile Include="Watcher.cs" />
     <Compile Include="XmlCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

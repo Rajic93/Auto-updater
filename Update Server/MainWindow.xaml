@@ -114,19 +114,29 @@
                          VerticalScrollBarVisibility="Auto"
                          HorizontalScrollBarVisibility="Auto"
                          Margin="5 35 5 5"/>
-            
+
             <Button Grid.Row="1"
-                    Content="Read Directory"
-                    Width="150"
+                    Content="Load Previous Version"
+                    Width="130"
                     Height="50"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Left"
                     Margin="20"
-                    Click="ButtonBase_OnClick"/>
+                    Click="ButtonBase3_OnClick" />
+
+            <Button Grid.Row="1"
+                    Content="Read Directory"
+                    Width="130"
+                    Height="50"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Margin="20"
+                    Click="ButtonBase_OnClick" />
+            
 
             <Button Grid.Row="1"
                     Content="Generate XML"
-                    Width="150"
+                    Width="130"
                     Height="50"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
