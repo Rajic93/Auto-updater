@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AutoUpdate>
+  <update appId="app">
+    <version value="1.2.3" />
+    <url value="jsjvidpl" />
+    <exe value="sbjvdj" />
+    <description value="dvnsjkvn&#xD;&#xA;" />
+    <launchArgs value="djvndskjvb&#xD;&#xA;" />
+    <directory name="root" value="">
+      <directory name="AutoUpdater">
+        <directory name="AutoUpdater">
+          <directory name=".svn">
+            <directory name="prop-base">
+              <file name="AutoUpdater.suo.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+            </directory>
+            <directory name="props" />
+            <directory name="text-base">
+              <file name="AutoUpdater.sln.svn-base" md5="ddc36f7deac22766a012bef7442dbf9a" />
+              <file name="AutoUpdater.suo.svn-base" md5="0f4db4016badbd2995f7a216f76173f4" />
+              <file name="Read me.txt.svn-base" md5="679bf008d7dcccdd8d4c72316ca9c189" />
+            </directory>
+            <directory name="tmp">
+              <directory name="prop-base" />
+              <directory name="props" />
+              <directory name="text-base" />
+            </directory>
+            <file name="all-wcprops" md5="d4879237ba9d9bb4859e33b0b1742cef" />
+            <file name="entries" md5="e0c5adf8e536b6663a2bad267bf6dffc" />
+          </directory>
+          <directory name=".vs">
+            <directory name="AutoUpdater">
+              <directory name="v14">
+                <file name=".suo" md5="0035e265fdb5da859bb7dfb716cfaff2" />
+              </directory>
+            </directory>
+          </directory>
+          <directory name="AutoUpdater">
+            <directory name=".svn">
+              <directory name="prop-base" />
+              <directory name="props" />
+              <directory name="text-base">
+                <file name="Autoupdater.config.svn-base" md5="f66345b1dfca4c976960dcca51c09481" />
+                <file name="AutoUpdater.csproj.svn-base" md5="9a29f5d3353d345ca84172d52710372e" />
+                <file name="DownloadConfirm.cs.svn-base" md5="cc6973839da252ec125438e31b2724d6" />
+                <file name="DownloadConfirm.designer.cs.svn-base" md5="4f9679e5cb19c2ffa0b539249c844407" />
+                <file name="DownloadConfirm.resx.svn-base" md5="3412f8510d0fbd5a923259522c1e34e7" />
+                <file name="DownloadProgress.cs.svn-base" md5="19ec4c263fbb9c66ea5f96e30f27b1d8" />
+                <file name="DownloadProgress.designer.cs.svn-base" md5="865360502b0860415f5f833bc1aaf097" />
+                <file name="DownloadProgress.resx.svn-base" md5="3412f8510d0fbd5a923259522c1e34e7" />
+              </directory>
+              <directory name="tmp">
+                <directory name="prop-base" />
+                <directory name="props" />
+                <directory name="text-base" />
+              </directory>
+              <file name="all-wcprops" md5="91f079ca26cf5aaa5cc923f03cf7720b" />
+              <file name="entries" md5="d0be660a2102c589e0a4130415e4a88e" />
+            </directory>
+            <directory name="AutoUpdateHelper">
+              <directory name=".svn">
+                <directory name="prop-base">
+                  <file name="AutoUpdater.cs.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                </directory>
+                <directory name="props" />
+                <directory name="text-base">
+                  <file name="AutoUpdater.cs.svn-base" md5="e9439a61681699f54de9152c0ebfcfe6" />
+                  <file name="CommonUnitity.cs.svn-base" md5="65a67935c806ab5f422c6b873f35cc16" />
+                  <file name="Config.cs.svn-base" md5="1a1d0f05dcb937a790391b76e946a327" />
+                  <file name="ConstFile.cs.svn-base" md5="55addf01dc451f6128aef830ead465bd" />
+                  <file name="DownloadFileInfo.cs.svn-base" md5="c509f1fdbddcfcdde05c87e7db14596f" />
+                  <file name="IAutoUpdater.cs.svn-base" md5="443252493d083aed28a23fea02fbc495" />
+                  <file name="LocalFile.cs.svn-base" md5="c62ef6537b12d5f6e45667adaf3c5134" />
+                  <file name="RemoteFile.cs.svn-base" md5="a341151801a73429754b446f8df08e1f" />
+                  <file name="UpdateFileList.cs.svn-base" md5="7d5b16c3e64a1be28673a2c7d051db70" />
+                </directory>
+                <directory name="tmp">
+                  <directory name="prop-base" />
+                  <directory name="props" />
+                  <directory name="text-base" />
+                </directory>
+                <file name="all-wcprops" md5="fc975e7342044d0f329ec0e937d5396c" />
+                <file name="entries" md5="52a0b683b50f6931f3c73aa48a98a79d" />
+              </directory>
+              <file name="AutoUpdater.cs" md5="e9439a61681699f54de9152c0ebfcfe6" />
+              <file name="CommonUnitity.cs" md5="65a67935c806ab5f422c6b873f35cc16" />
+              <file name="Config.cs" md5="1a1d0f05dcb937a790391b76e946a327" />
+              <file name="ConstFile.cs" md5="55addf01dc451f6128aef830ead465bd" />
+              <file name="DownloadFileInfo.cs" md5="c509f1fdbddcfcdde05c87e7db14596f" />
+              <file name="IAutoUpdater.cs" md5="443252493d083aed28a23fea02fbc495" />
+              <file name="LocalFile.cs" md5="c62ef6537b12d5f6e45667adaf3c5134" />
+              <file name="RemoteFile.cs" md5="a341151801a73429754b446f8df08e1f" />
+              <file name="UpdateFileList.cs" md5="7d5b16c3e64a1be28673a2c7d051db70" />
+            </directory>
+            <directory name="bin">
+              <directory name=".svn">
+                <directory name="prop-base" />
+                <directory name="props" />
+                <directory name="text-base" />
+                <directory name="tmp">
+                  <directory name="prop-base" />
+                  <directory name="props" />
+                  <directory name="text-base" />
+                </directory>
+                <file name="all-wcprops" md5="e05887db8c2ce377d307a250376faa92" />
+                <file name="entries" md5="6f2493959f5de43fd84b7aea6e25b9b5" />
+              </directory>
+              <directory name="Debug">
+                <directory name=".svn">
+                  <directory name="prop-base">
+                    <file name="AutoUpdater.dll.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                    <file name="AutoUpdater.pdb.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                  </directory>
+                  <directory name="props" />
+                  <directory name="text-base">
+                    <file name="AutoUpdater.dll.svn-base" md5="fa3fe276c601ab1d24253818e6aac5f4" />
+                    <file name="AutoUpdater.pdb.svn-base" md5="dcb434d5d667a0142d6fb8601476ce8b" />
+                  </directory>
+                  <directory name="tmp">
+                    <directory name="prop-base" />
+                    <directory name="props" />
+                    <directory name="text-base" />
+                  </directory>
+                  <file name="all-wcprops" md5="ffe633ea740efe8f64ef0dd8cf88abee" />
+                  <file name="entries" md5="bc4884df76505ac111947cd07e1d7b00" />
+                </directory>
+                <file name="AutoUpdater.dll" md5="a38aa616a3d7c73f7a457b28ba6fc9a5" />
+                <file name="AutoUpdater.pdb" md5="5b8240fdd68acfe77495ea6348287abc" />
+              </directory>
+            </directory>
+            <directory name="obj">
+              <directory name=".svn">
+                <directory name="prop-base" />
+                <directory name="props" />
+                <directory name="text-base" />
+                <directory name="tmp">
+                  <directory name="prop-base" />
+                  <directory name="props" />
+                  <directory name="text-base" />
+                </directory>
+                <file name="all-wcprops" md5="e579544458178cef35675a4aebc871ed" />
+                <file name="entries" md5="84e30d16a450087c13dddb0e5092d952" />
+              </directory>
+              <directory name="Debug">
+                <directory name=".svn">
+                  <directory name="prop-base">
+                    <file name="AutoUpdater.csproj.GenerateResource.Cache.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                    <file name="AutoUpdater.dll.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                    <file name="AutoUpdater.pdb.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                    <file name="KnightsWarriorAutoupdater.DownloadConfirm.resources.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                    <file name="KnightsWarriorAutoupdater.DownloadProgress.resources.svn-base" md5="113136892f2137aa0116093a524ade0b" />
+                  </directory>
+                  <directory name="props" />
+                  <directory name="text-base">
+                    <file name="AutoUpdater.csproj.FileListAbsolute.txt.svn-base" md5="d3c5492c763e5bddaefaf0a96a7202bd" />
+                    <file name="AutoUpdater.csproj.GenerateResource.Cache.svn-base" md5="bbd0d150713d88169335c7760029edb0" />
+                    <file name="AutoUpdater.dll.svn-base" md5="fa3fe276c601ab1d24253818e6aac5f4" />
+                    <file name="AutoUpdater.pdb.svn-base" md5="dcb434d5d667a0142d6fb8601476ce8b" />
+                    <file name="KnightsWarriorAutoupdater.DownloadConfirm.resources.svn-base" md5="98474d6109023fa4f60d6d6af913cc35" />
+                    <file name="KnightsWarriorAutoupdater.DownloadProgress.resources.svn-base" md5="98474d6109023fa4f60d6d6af913cc35" />
+                  </directory>
+                  <directory name="tmp">
+                    <directory name="prop-base" />
+                    <directory name="props" />
+                    <directory name="text-base" />
+                  </directory>
+                  <file name="all-wcprops" md5="b82fdaa2466e88617fc3eedde907de11" />
+                  <file name="entries" md5="67d18c0e578144a6a821772b23d61fa4" />
+                </directory>
+                <directory name="TempPE">
+                  <directory name=".svn">
+                    <directory name="prop-base" />
+                    <directory name="props" />
+                    <directory name="text-base" />
+                    <directory name="tmp">
+                      <directory name="prop-base" />
+                      <directory name="props" />
+                      <directory name="text-base" />
+                    </directory>
+                    <file name="all-wcprops" md5="6cfcc54da91a231ed848b56a189cc557" />
+                    <file name="entries" md5="ce2b8bd86d9e593dc08af776e03f1220" />
+                  </directory>
+                </directory>
+                <file name="AutoUpdater.csproj.FileListAbsolute.txt" md5="009effc3cc5fd7363771d4516b8131a7" />
+                <file name="AutoUpdater.csproj.GenerateResource.Cache" md5="bbd0d150713d88169335c7760029edb0" />
+                <file name="AutoUpdater.csprojResolveAssemblyReference.cache" md5="ef9f7605e49e2f7371b7f9d3383ca153" />
+                <file name="AutoUpdater.dll" md5="a38aa616a3d7c73f7a457b28ba6fc9a5" />
+                <file name="AutoUpdater.pdb" md5="5b8240fdd68acfe77495ea6348287abc" />
+                <file name="DesignTimeResolveAssemblyReferences.cache" md5="2006511e17bd6ef3917d35383090ff42" />
+                <file name="DesignTimeResolveAssemblyReferencesInput.cache" md5="cae5d7823856d11522f37d1eddc9f2e1" />
+                <file name="KnightsWarriorAutoupdater.DownloadConfirm.resources" md5="98474d6109023fa4f60d6d6af913cc35" />
+                <file name="KnightsWarriorAutoupdater.DownloadProgress.resources" md5="98474d6109023fa4f60d6d6af913cc35" />
+              </directory>
+            </directory>
+            <directory name="Properties">
+              <directory name=".svn">
+                <directory name="prop-base" />
+                <directory name="props" />
+                <directory name="text-base">
+                  <file name="AssemblyInfo.cs.svn-base" md5="1368cf67f7aabfa0d60cd667d1a62f31" />
+                </directory>
+                <directory name="tmp">
+                  <directory name="prop-base" />
+                  <directory name="props" />
+                  <directory name="text-base" />
+                </directory>
+                <file name="all-wcprops" md5="ef02b6995a3a1a008a282f4bb0c9fbb7" />
+                <file name="entries" md5="ba7b0160e46333aa4b19043715356f1b" />
+              </directory>
+              <file name="AssemblyInfo.cs" md5="1368cf67f7aabfa0d60cd667d1a62f31" />
+            </directory>
+            <file name="Autoupdater.config" md5="f66345b1dfca4c976960dcca51c09481" />
+            <file name="AutoUpdater.csproj" md5="27a1ff108f012d03d2e4ec2393440d21" />
+            <file name="DownloadConfirm.cs" md5="cc6973839da252ec125438e31b2724d6" />
+            <file name="DownloadConfirm.designer.cs" md5="4f9679e5cb19c2ffa0b539249c844407" />
+            <file name="DownloadConfirm.resx" md5="3412f8510d0fbd5a923259522c1e34e7" />
+            <file name="DownloadProgress.cs" md5="19ec4c263fbb9c66ea5f96e30f27b1d8" />
+            <file name="DownloadProgress.designer.cs" md5="865360502b0860415f5f833bc1aaf097" />
+            <file name="DownloadProgress.resx" md5="3412f8510d0fbd5a923259522c1e34e7" />
+          </directory>
+          <directory name="Backup">
+            <directory name="AutoUpdater">
+              <directory name="AutoUpdateHelper">
+                <file name="AutoUpdater.cs" md5="e9439a61681699f54de9152c0ebfcfe6" />
+                <file name="CommonUnitity.cs" md5="65a67935c806ab5f422c6b873f35cc16" />
+                <file name="Config.cs" md5="1a1d0f05dcb937a790391b76e946a327" />
+                <file name="ConstFile.cs" md5="55addf01dc451f6128aef830ead465bd" />
+                <file name="DownloadFileInfo.cs" md5="c509f1fdbddcfcdde05c87e7db14596f" />
+                <file name="IAutoUpdater.cs" md5="443252493d083aed28a23fea02fbc495" />
+                <file name="LocalFile.cs" md5="c62ef6537b12d5f6e45667adaf3c5134" />
+                <file name="RemoteFile.cs" md5="a341151801a73429754b446f8df08e1f" />
+                <file name="UpdateFileList.cs" md5="7d5b16c3e64a1be28673a2c7d051db70" />
+              </directory>
+              <directory name="Properties">
+                <file name="AssemblyInfo.cs" md5="1368cf67f7aabfa0d60cd667d1a62f31" />
+              </directory>
+              <file name="Autoupdater.config" md5="f66345b1dfca4c976960dcca51c09481" />
+              <file name="AutoUpdater.csproj" md5="9a29f5d3353d345ca84172d52710372e" />
+              <file name="DownloadConfirm.cs" md5="cc6973839da252ec125438e31b2724d6" />
+              <file name="DownloadConfirm.designer.cs" md5="4f9679e5cb19c2ffa0b539249c844407" />
+              <file name="DownloadConfirm.resx" md5="3412f8510d0fbd5a923259522c1e34e7" />
+              <file name="DownloadProgress.cs" md5="19ec4c263fbb9c66ea5f96e30f27b1d8" />
+              <file name="DownloadProgress.designer.cs" md5="865360502b0860415f5f833bc1aaf097" />
+              <file name="DownloadProgress.resx" md5="3412f8510d0fbd5a923259522c1e34e7" />
+            </directory>
+            <file name="AutoUpdater.sln" md5="ddc36f7deac22766a012bef7442dbf9a" />
+          </directory>
+          <file name="AutoUpdater.sln" md5="2b01d48077f2066c4a0205920433641c" />
+          <file name="AutoUpdater.suo" md5="0f4db4016badbd2995f7a216f76173f4" />
+          <file name="Read me.txt" md5="679bf008d7dcccdd8d4c72316ca9c189" />
+        </directory>
+      </directory>
+    </directory>
+  </update>
+</AutoUpdate>

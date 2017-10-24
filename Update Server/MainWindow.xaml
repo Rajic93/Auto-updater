@@ -1,0 +1,138 @@
+﻿<Window x:Class="Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="600"
+        Width="800"
+        MinHeight="600"
+        MinWidth="800"
+        MaxHeight="600"
+        MaxWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <!-- AppID -->
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0">
+                <Label Margin="5 5 5 3"
+                       Content="AppID" />
+                <TextBox x:Name="AppId"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Height="25"
+                         Margin="5" />
+            </StackPanel>
+            <!-- Version  -->
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0">
+                <Label Margin="5 5 5 3"
+                       Content="Version" />
+                <TextBox x:Name="Version"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Height="25"
+                         Margin="5" />
+            </StackPanel>
+            <!-- URL -->
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0">
+                <Label Margin="5 5 5 3"
+                       Content="URL" />
+                <TextBox x:Name="Url"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Height="25"
+                         Margin="5" />
+            </StackPanel>
+            <!-- EXE -->
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0">
+                <Label Margin="5 5 5 3"
+                       Content="EXE" />
+                <TextBox x:Name="Exe"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Height="25"
+                         Margin="5" />
+            </StackPanel>
+            <!-- Description -->
+            <StackPanel Grid.Row="4"
+                        Grid.Column="0">
+                <Label Margin="5 5 5 3"
+                       Content="Description" />
+                <RichTextBox x:Name="Description"
+                             HorizontalAlignment="Stretch"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="5"
+                             Height="95" />
+            </StackPanel>
+            <!-- Arguments -->
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0">
+                <Label Margin="5 5 5 3"
+                       Content="Launch arguments" />
+                <RichTextBox x:Name="Args"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Stretch"
+                             VerticalScrollBarVisibility="Auto"
+                             Height="95"
+                             Margin="5" />
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label VerticalAlignment="Top"
+                   HorizontalAlignment="Stretch"
+                   Margin="5"
+                   Content="update.xml"/>
+            <RichTextBox x:Name="XmlFile"
+                         Grid.Row="0"
+                         VerticalAlignment="Stretch"
+                         HorizontalAlignment="Stretch"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Auto"
+                         Margin="5 35 5 5"/>
+            
+            <Button Grid.Row="1"
+                    Content="Read Directory"
+                    Width="150"
+                    Height="50"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Margin="20"
+                    Click="ButtonBase_OnClick"/>
+
+            <Button Grid.Row="1"
+                    Content="Generate XML"
+                    Width="150"
+                    Height="50"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="20"
+                    Click="ButtonBase2_OnClick"/>
+        </Grid>
+    </Grid>
+</Window>
+

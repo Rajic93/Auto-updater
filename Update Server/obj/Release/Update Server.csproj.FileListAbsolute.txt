@@ -1,0 +1,3 @@
+D:\Projects\Windows\Auto Updater\Auto updater\Server\bin\Release\Server.exe.config
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.exe
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.pdb

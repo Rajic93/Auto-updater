@@ -1,0 +1,14 @@
+D:\Projects\Windows\Auto Updater\Auto updater\Server\bin\Release\Server.exe.config
+D:\Projects\Windows\Auto Updater\Auto updater\Server\bin\Release\Server.exe
+D:\Projects\Windows\Auto Updater\Auto updater\Server\bin\Release\Server.pdb
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\MainWindow.g.cs
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\App.g.cs
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server_MarkupCompile.cache
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server_MarkupCompile.lref
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\MainWindow.baml
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.g.resources
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.Properties.Resources.resources
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.csproj.GenerateResource.Cache
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.exe
+D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.pdb
