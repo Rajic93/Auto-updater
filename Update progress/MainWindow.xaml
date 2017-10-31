@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Update_progress"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="800"
+        ContentRendered="MainWindow_OnContentRendered">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -45,7 +46,7 @@
 
         <Button x:Name="Finish"
                 Grid.Row="2"
-                Content="Abort"
+                Content="Finish"
                 Width="100"
                 Height="40"
                 VerticalAlignment="Center"

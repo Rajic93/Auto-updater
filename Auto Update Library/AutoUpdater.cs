@@ -27,13 +27,6 @@ namespace Auto_updater
         private BackgroundWorker bgWorker;
         
 
-        string deleteFile = "Del /F /Q \"{0}\"";
-        string makeDirectory = "mkdir \"{0}\"";
-        string removeDirectory = "rmdir \"{0}\"";
-        string moveCommand = "Move /Y \"{1}\" \"{2}\"";
-        string pause4SecCommand = "Choice /C Y /N /D Y /T 1";
-        string pause2SecCommand = "Choice /C Y /N /D Y /T 1";
-        string startCommand = " Start \"\" /D \"{0}\" \"{1}\" {2}";
 
 
         #region Public functions
@@ -125,14 +118,17 @@ namespace Auto_updater
                 //path of the root folder of updates
                 string rootTempPath = $"{Path.GetTempPath()}AutoUpdate";
 
-                string args = $"\"{rootPath}\" \"{rootTempPath}\"";
+                string argv = PrepareArgs(update.LaunchArgs);
+                string args =
+                    $"\"{rootPath}\" \"{rootTempPath}\" \"{Process.GetCurrentProcess().MainModule.FileName}\" \"{update.Exe}\" {argv}";
                 ProcessStartInfo info = new ProcessStartInfo("Update progress.exe");
                 info.Arguments = args;
                 info.Verb = "runas";
                 
                 //ProcessStartInfo info = UpdateApplication(rootTempPath, rootPath, update.Directory, update.LaunchArgs, update.Exe);
-                //info.UseShellExecute = false;
 
+                //info.UseShellExecute = false;
+                
                 Process.Start(info);
                 Process.GetCurrentProcess().Kill();
             }
@@ -148,92 +144,15 @@ namespace Auto_updater
             }
         }
 
-        /// <summary>
-        /// Updates application.
-        /// </summary>
-        /// <param name="tempRootPath">Path of the temp directory where files are downloaded</param>
-        /// <param name="rootPath">Path of the app install directory.</param>
-        /// <param name="directory"></param>
-        /// <param name="updateLaunchArgs"></param>
-        private ProcessStartInfo UpdateApplication(object tempRootPath, string rootPath, Directory directory, string updateLaunchArgs, string exe)
+        private string PrepareArgs(string updateLaunchArgs)
         {
-            string echo =
-                "echo Updating application...Please wait until it is done. Application will start once it is finished.";
-            string commands = $"/C Choice /C Y /N /D Y /T 5 &  Choice /C Y /N /D Y /T 15";
-
-            //string commands = $"\\C ";
-            //generate commands to execute
-            //move content to app's directory
-            commands += GenerateScript(tempRootPath, rootPath, directory, updateLaunchArgs);
-            //delete directories and files from the temp directory
-            commands += GenerateDeleteScript(tempRootPath, directory);
-            //commands exe
-            commands += String.Format(startCommand, rootPath, exe, updateLaunchArgs);
-            //close cmd
-            commands += " & exit";
-
-            //File.WriteAllText("D:\\test.bat", script);
-
-            
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.Arguments = commands;
-            //info.WindowStyle = ProcessWindowStyle.Hidden;
-            //info.CreateNoWindow = true;
-            info.FileName = "cmd.exe";
-            return info;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tempRootPath"></param>
-        /// <param name="rootPath"></param>
-        /// <param name="directory"></param>
-        /// <param name="updateLaunchArgs"></param>
-        /// <returns></returns>
-        private string GenerateScript(object tempRootPath, string rootPath, Directory directory, string updateLaunchArgs)
-        {
-            string retCommand = "";
-            foreach (Directory childDirectory in directory.Directories)
+            string args = "";
+            string[] argv = updateLaunchArgs.Split(' ');
+            foreach (string arg in argv)
             {
-                string command = pause4SecCommand + " & " + makeDirectory;
-                command = String.Format(command, $"{rootPath}\\{childDirectory.Name}");
-                retCommand += $"{command} & ";
-                retCommand += GenerateScript(tempRootPath + "\\" + childDirectory.Name, rootPath + "\\" + childDirectory.Name, childDirectory, updateLaunchArgs);
+                args += $"\"{arg}\" ";
             }
-            foreach (KeyValuePair<string, string> file in directory.Files)
-            {
-                string command = pause4SecCommand + " & " + deleteFile + " & " + pause2SecCommand + " & " + moveCommand;
-                command = String.Format(command, rootPath + "\\" + file.Key, tempRootPath + "\\" + file.Key, rootPath + "\\" + file.Key);
-                retCommand += $"{command} &";
-            }
-            return retCommand;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tempRootPath"></param>
-        /// <param name="directory"></param>
-        /// <returns></returns>
-        private string GenerateDeleteScript(object tempRootPath, Directory directory)
-        {
-            string retCommand = "";
-            foreach (KeyValuePair<string, string> file in directory.Files)
-            {
-                string command = deleteFile;
-                command = String.Format(command, tempRootPath + "\\" + file.Key);
-                retCommand += $"{command} &";
-            }
-            foreach (Directory childDirectory in directory.Directories)
-            {
-                retCommand += GenerateDeleteScript(tempRootPath + "\\" + childDirectory.Name, childDirectory);
-                string command = removeDirectory;
-                command = String.Format(command, $"{tempRootPath}\\{childDirectory.Name}");
-                retCommand += $"{command} & ";
-            }
-            return retCommand;
+            return args;
         }
     }
 }
