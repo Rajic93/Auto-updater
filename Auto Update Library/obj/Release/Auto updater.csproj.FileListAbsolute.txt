@@ -8,3 +8,12 @@ D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Release\Auto_upda
 D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Release\Auto updater.csproj.GenerateResource.Cache
 D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Release\Auto updater.dll
 D:\Projects\Windows\Auto Updater\Auto updater\Auto updater\obj\Release\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\bin\Release\Auto updater.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\bin\Release\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto_updater.AutoUpdateAcceptForm.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto_updater.lblDownloading.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto_updater.InfoForm.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto_updater.Properties.Resources.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto updater.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto updater.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Release\Auto updater.pdb

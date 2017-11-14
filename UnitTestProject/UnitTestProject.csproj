@@ -58,6 +58,10 @@
       <Project>{d220f5c6-cb00-4f54-a2d4-66b252d18d04}</Project>
       <Name>Auto updater</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Update progress\Update progress.csproj">
+      <Project>{AA643F57-52C9-4229-9053-C12441DB7D42}</Project>
+      <Name>Update progress</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

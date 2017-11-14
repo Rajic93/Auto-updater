@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoUpdate>
   <update appId="app">
-    <version value="1.2.3.4" />
+    <version value="1.2.3.45" />
     <url value="http://127.0.0.1:8080/app/updates" />
     <exe value="" />
-    <description value="&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
-    <launchArgs value="&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+    <description value="&#xD;&#xA;" />
+    <launchArgs value="&#xD;&#xA;" />
     <directory name="root">
       <directory name="ConsoleApplication1">
         <directory name="Debug">

@@ -15,7 +15,6 @@ D:\Projects\Upwork\Master Diction\Master Diction\Update Server\obj\Debug\Server.
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Debug\Server.exe.config
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Debug\Server.exe
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Debug\Server.pdb
-D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Update Server.csprojResolveAssemblyReference.cache
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\MainWindow.g.cs
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\App.g.cs
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server_MarkupCompile.cache

@@ -42,6 +42,7 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Right"
                 Margin="15"
+                Visibility="Visible"
                 Click="Abort_OnClick" />
 
         <Button x:Name="Finish"

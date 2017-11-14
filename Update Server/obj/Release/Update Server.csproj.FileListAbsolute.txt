@@ -1,3 +1,16 @@
 D:\Projects\Windows\Auto Updater\Auto updater\Server\bin\Release\Server.exe.config
 D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.exe
 D:\Projects\Windows\Auto Updater\Auto updater\Server\obj\Release\Server.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Release\Server.exe.config
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Release\Server.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\bin\Release\Server.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\MainWindow.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\App.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Server_MarkupCompile.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Server_MarkupCompile.lref
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\MainWindow.baml
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Server.g.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Server.Properties.Resources.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Update Server.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Server.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Release\Server.pdb

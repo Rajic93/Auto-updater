@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -60,6 +61,9 @@ namespace Update_progress
         };
 
         private config _config;
+        private bool _rollback;
+        private ProcessStartInfo _info;
+        private bool _fatal;
 
         public MainWindow()
         {
@@ -70,24 +74,24 @@ namespace Update_progress
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             //_updateProcess = Process.Start(@"\update progress.exe");
 
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += new DoWorkEventHandler(bgWorker_DoWork);
-            worker.ProgressChanged += new ProgressChangedEventHandler(bgWorker_ProgressChanged);
-            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgWorker_RunWorkerCompleted);
+            worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
+            worker.DoWork += bgWorker_DoWork;
+            worker.ProgressChanged += bgWorker_ProgressChanged;
+            worker.RunWorkerCompleted += bgWorker_RunWorkerCompleted;
             worker.RunWorkerAsync();
             
-            _report = new ReportProgressDelegate(Report);
-            _finish = new FinishDelegate(FinishUpdate);
+            _report = Report;
+            _finish = FinishUpdate;
 
         }
 
         private void MainWindow_OnContentRendered(object sender, EventArgs e)
         {
             Topmost = false;
-            //Thread.Sleep(10000);
-            //worker.RunWorkerAsync();
         }
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -105,11 +109,7 @@ namespace Update_progress
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Dispatcher.Invoke(delegate
-            {
-                Abort.Visibility = Visibility.Collapsed;
-                Finish.Visibility = Visibility.Visible;
-            });
+            
         }
 
         private void Abort_OnClick(object sender, RoutedEventArgs e)
@@ -119,6 +119,19 @@ namespace Update_progress
 
         private void Finish_OnClick(object sender, RoutedEventArgs e)
         {
+            if(_rollback && !_fatal)
+            {
+                Process.Start(_info);
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+            if (_fatal)
+            {
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
             //return to previous app
             string exe = args[4];
             string argv = "";
@@ -128,9 +141,14 @@ namespace Update_progress
             }
             if (!string.IsNullOrEmpty(exe))
             {
-                ProcessStartInfo info = new ProcessStartInfo(exe);
-                info.Arguments = argv;
-                Process.Start(info);
+                _info = new ProcessStartInfo(exe);
+                _info.Arguments = argv;
+            }
+            if (_info == null)
+                _report("There is no exe file specified for the new app.");
+            if (_info != null)
+            {
+                Process.Start(_info); 
             }
             Process.GetCurrentProcess().Kill();
         }
@@ -141,6 +159,10 @@ namespace Update_progress
         {
             Dispatcher.Invoke(() =>
             {
+                
+                if (!File.Exists("D:\\log.txt"))
+                    File.Create("D:\\log.txt").Close();
+                File.AppendAllText("D:\\log.txt", $"{message}\n");
                 _log.Add(message);
                 Log.SelectedIndex = Log.Items.Count - 1;
             });
@@ -198,18 +220,39 @@ namespace Update_progress
 
             if (!filesUpdated)
             {
-                //rollback
-                //
-                //
+                if (!Rollback(rootPath, rootTempPath))
+                {
+                    _report("Fatal error: Application not backed up correctly. It may need reinstallation.");
+                    _rollback = false;
+                    _fatal = true;
+                }
                 //
                 string rollbackExe = args[3];
+                string argv = "";
+                for (int i = 5; i < args.Length; i++)
+                {
+                    argv += $"\"{args[i]}\" ";
+                }
+                if (!string.IsNullOrEmpty(rollbackExe))
+                {
+                    _info = new ProcessStartInfo(rollbackExe);
+                    _info.Arguments = argv;
+                    _rollback = true;
+                }
+                _finish();
                 return;
             }
 
             _report("Application successfully updated.");
-            
+
             //clear backup files and downloaded updates
+            _report("Deleting leftover files");
+            string tempDir = _config.updatesPath;
+            tempDir = Directory.GetDirectories(tempDir)[1];
+            filesUpdated &= DeleteLeftOverFiles(_config.appPath, tempDir);
+            _report("Deleting backup files");
             Directory.Delete(backupPath, true);
+            _report("Deleting downloaded files");
             Directory.Delete(rootTempPath, true);
             _finish();
         }
@@ -225,7 +268,7 @@ namespace Update_progress
             return result;
         }
 
-        private bool DuplicateFileSystem(string appBaseDir, string tempDir)
+        public bool DuplicateFileSystem(string appBaseDir, string tempDir)
         {
             try
             {
@@ -247,6 +290,8 @@ namespace Update_progress
                 string[] directories = System.IO.Directory.GetDirectories(appBaseDir);
                 foreach (string directory in directories)
                 {
+                    if (directory.Split('\\').Last().Equals("backup"))
+                        continue;
                     string nextTempDir = System.IO.Path.Combine(tempDir, directory.Split('\\').Last());
                     System.IO.Directory.CreateDirectory(nextTempDir);
                     _report($"Creating directory: {directory.Split('\\').Last()}");
@@ -263,16 +308,19 @@ namespace Update_progress
         private bool UpdateAppFiles()
         {
             string tempDir = _config.updatesPath;
+            tempDir = Directory.GetDirectories(tempDir)[1];
             string appBaseDir = _config.appPath;
 
+            _report("Replacing files");
             bool result = ReplaceFiles(appBaseDir, tempDir);
-            result = DeleteLeftoverFile(appBaseDir, tempDir);
 
             return result;
         }
 
         private bool ReplaceFiles(string appBaseDir, string tempDir)
         {
+            _report($"Destination: {appBaseDir}");
+            _report($"Source: {tempDir}");
             bool result = true;
             DirectoryInfo info = new DirectoryInfo(tempDir);
             FileInfo[] files = info.GetFiles();
@@ -280,15 +328,31 @@ namespace Update_progress
             {
                 if (File.Exists(System.IO.Path.Combine(appBaseDir, file.Name)))
                 {
-                    File.Replace(System.IO.Path.Combine(tempDir, file.Name),
-                        System.IO.Path.Combine(appBaseDir, file.Name),
-                        System.IO.Path.Combine(appBaseDir, $"{file.Name}.bac"));
-                    _report($"Replacing file: {file.Name}");
+                    //compute hash
+                    MD5 cypher = MD5.Create();
+                    byte[] hash = cypher.ComputeHash(File.ReadAllBytes(System.IO.Path.Combine(appBaseDir, file.Name)));
+                    byte[] hash2 = cypher.ComputeHash(File.ReadAllBytes(System.IO.Path.Combine(tempDir, file.Name)));
+                    if (hash2.Equals(hash))
+                        continue;
+                    try
+                    {
+                        _report($"Replacing file: {file.FullName}");
+                        File.Replace(System.IO.Path.Combine(tempDir, file.Name),
+                                        System.IO.Path.Combine(appBaseDir, file.Name),
+                                        System.IO.Path.Combine(appBaseDir, $"{file.Name}.bac"));
+                    }
+                    catch (IOException ioException)
+                    {
+                        _report($"{ioException.Message}");
+                        _report($"Error at file: {file.Name}");
+                        return false;
+                    }
                 }
                 else
                 {
-                    File.Copy(System.IO.Path.Combine(appBaseDir, file.Name), System.IO.Path.Combine(tempDir, file.Name));
-                    _report($"Copying file: {file.Name}");
+                    _report($"Copying file: {file.FullName} to \"{System.IO.Path.Combine(appBaseDir, file.Name)}\"");
+                    File.Copy(System.IO.Path.Combine(tempDir, file.Name), System.IO.Path.Combine(appBaseDir, file.Name));
+                    _report($"File succesfully copied");
                 }
                 if (File.Exists(System.IO.Path.Combine(appBaseDir, file.Name)))
                     continue;
@@ -300,45 +364,62 @@ namespace Update_progress
             string[] directories = System.IO.Directory.GetDirectories(tempDir);
             foreach (string directory in directories)
             {
-                string nextDir = System.IO.Path.Combine(appBaseDir, directory.Split('\\').Last());
-                if (!Directory.Exists(nextDir))
+                if (directory.Split('\\').Last().Equals("backup"))
+                    continue;
+                string nextAppBaseDir = System.IO.Path.Combine(appBaseDir, directory.Split('\\').Last());
+                _report($"Next appBaseDir: {nextAppBaseDir}");
+                if (!Directory.Exists(nextAppBaseDir))
                 {
                     _report($"Creating directory: {directory.Split('\\').Last()}");
-                    System.IO.Directory.CreateDirectory(nextDir);
+                    System.IO.Directory.CreateDirectory(nextAppBaseDir);
                 }
-                result &= DuplicateFileSystem(directory, nextDir);
+                result &= ReplaceFiles(nextAppBaseDir, directory);
             }
 
             return result;
         }
 
-        private bool DeleteLeftoverFiles(string appBaseDir, string tempDir)
+        private bool DeleteLeftOverFiles(string appBaseDir, string tempDir)
         {
+            _report($"Application directory: {appBaseDir}");
+            _report($"Downloads directory: {tempDir}");
             bool result = true;
             string[] directories = Directory.GetDirectories(appBaseDir);
             foreach (string directory in directories)
             {
                 string nextDir = System.IO.Path.Combine(appBaseDir, directory.Split('\\').Last());
-                string nexTempDir = Path.Combine(tempDir, directory.Split('\\').Last());
-                if (Directory.Exists(nextTempDir))
+                string nextTempDir = Path.Combine(tempDir, directory.Split('\\').Last());
+                _report($"Checking directory: {nextTempDir}");
+                if (!Directory.Exists(nextTempDir))
                 {
-                    DeleteLeftoverFiles(nextDir, nexTempDir);
+                    _report($"Deleting directory: {nextTempDir}");
+                    Directory.Delete(nextDir, true);
+                    if (Directory.Exists(nextDir))
+                        return false;
                     continue;
                 }
-
-                Directory.Delete(nextDir, true);
-                if (Directory.Exists(nextDir))
-                    return false;
+                result = DeleteLeftOverFiles(nextDir, nextTempDir);
             }
 
-            DirectoryInfo info = new DirectoryInfo(tempDir);
+            DirectoryInfo info = new DirectoryInfo(appBaseDir);
             FileInfo[] files = info.GetFiles();
             foreach (FileInfo file in files)
             {
+                _report($"Checking file: {Path.Combine(tempDir, file.Name)}");
                 if (!File.Exists(Path.Combine(tempDir, file.Name)))
-                    File.Delete(file);
-                if (File.Exists(file))
-                    return false;
+                {
+                    _report($"Deleting file: {Path.Combine(tempDir, file.Name)}");
+                    try
+                    {
+                        File.Delete(Path.Combine(appBaseDir, file.Name));
+                    }
+                    catch (Exception exception)
+                    {
+                        _report($"File not deleted: {Path.Combine(appBaseDir, file.Name)}");
+                    }
+                    //if (File.Exists(Path.Combine(appBaseDir, file.Name)))
+                    //    return false;
+                }
             }
 
             return result;
@@ -346,13 +427,13 @@ namespace Update_progress
 
         private bool Rollback(string appBaseDir, string tempDir)
         {
-            string backupPath = System.IO.Path.Combine(tempPath, "backup");
+            string backupPath = System.IO.Path.Combine(tempDir, "backup");
 
             bool result = ReplaceFiles(backupPath, appBaseDir);
 
-            result = DeleteLeftoverFiles(appBaseDir, backupPath);
+            //result &= DeleteLeftOverFiles(appBaseDir, backupPath);
 
-            return true;
+            return result;
         }
 
         /*

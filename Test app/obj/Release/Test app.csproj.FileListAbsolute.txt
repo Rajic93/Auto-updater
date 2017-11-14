@@ -1,0 +1,18 @@
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Test app.exe.config
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Test app.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Test app.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Auto updater.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Update progress.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\bin\Release\Update progress.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app.csprojResolveAssemblyReference.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\MainWindow.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\App.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app_MarkupCompile.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app_MarkupCompile.lref
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\MainWindow.baml
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app.g.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test_app.Properties.Resources.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Test app\obj\Release\Test app.pdb

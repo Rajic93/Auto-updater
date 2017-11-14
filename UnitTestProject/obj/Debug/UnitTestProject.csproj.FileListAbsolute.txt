@@ -1,0 +1,10 @@
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\UnitTestProject.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\UnitTestProject.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\Auto updater.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\Update progress.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\bin\Debug\Update progress.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\obj\Debug\UnitTestProject.dll
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\UnitTestProject\obj\Debug\UnitTestProject.pdb

@@ -1,0 +1,13 @@
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\bin\Release\Update progress.exe.config
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\bin\Release\Update progress.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\bin\Release\Update progress.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\MainWindow.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\App.g.cs
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update progress_MarkupCompile.cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update progress_MarkupCompile.lref
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\MainWindow.baml
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update progress.g.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update_progress.Properties.Resources.resources
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update progress.csproj.GenerateResource.Cache
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update progress.exe
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Release\Update progress.pdb
