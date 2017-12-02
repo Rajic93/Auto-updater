@@ -54,4 +54,5 @@ Download page: http://www.rejetto.com/hfs/?f=dl.
 
 ## TODO
 - Add File server functionalities to the *Update server* and change *HFS* with it.
+- Test Rollback
 - Finish unit testing
