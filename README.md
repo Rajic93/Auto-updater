@@ -46,8 +46,10 @@ In order to read existing manifest file and show it in app click at *Load Previo
 
 If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *manifest.xml* file is created at */app* directory.
 
-Currently for sending files to the client *HFS* is used. 
+Currently for sending files to the client *HFS* is used. Setup it and you are ready to go.
+
 Complete documentation can be found at http://www.rejetto.com/wiki/index.php?title=Main_Page.
+
 Download page: http://www.rejetto.com/hfs/?f=dl.
 
 ## TODO
