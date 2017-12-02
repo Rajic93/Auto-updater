@@ -4,13 +4,44 @@ Auto update module for .NET applications
 
 ## Auto Update Library
 
+Auto update library can be downloaded and installed from Nuget.org by using following command in the package console:
 
+```
+Install-Package Auto_updater.auto-update-desktop -Version 1.0.0
+```
+
+To use it create instance of the *AutoUpdater* class and pass instance of the *ApplicationInfo* to the constructor. *ApplicationInfo* class has following properties that must be provided during object creation:
+
+- *ApplicationAssembly*
+- *ApplicationIcon*
+- *ApplicationId*
+- *ApplicationName*
+- *UpdateXmlLocation*
+
+*ApplicationId* must match with the *appId* provided in the *update.xml* described later in this text, while *ApplicationName* is used in the update UI to state which application is updated. *UpdateXmlLocation* is *Uri* object that contains url to the manifest file.
+
+*AutoUpdater* class has two public methods, *CheckForUpdate* and *DoUpdate*. Both do not take any parameters. *CheckForUpdate* checks if there is update for the application at the provided url in the *ApplicationInfo*. *DoUpdate*, that actually updates application by downloading files from the url specified in the *update.xml* in the *url* tag. It downloads files over HTTP so HTTP file server is needed as described in the following section.
+
+Example usage:
+
+```
+AutoUpdater update = new AutoUpdater(new ApplicationInfo
+{
+    ApplicationAssembly = Assembly.GetExecutingAssembly(),
+    ApplicationIcon = null,
+    ApplicationId = "app",
+    ApplicationName = "App",
+    UpdateXmlLocation = new Uri("http://127.0.0.1:8080/manifest/app/update.xml")
+});
+if (update.CheckForUpdate())
+    update.DoUpdate();
+```
 
 ## Update Server
 
 Update server is used to generate *manifest.xml* file which is later used to compare application version and files.
 
-Paste update files to the *updates* directory and generate manifest file with the application. 
+Paste update files to the *updates* directory in the installation directory and generate manifest file with the application. 
 
 *Manifest.xml* has following structure:
 
@@ -44,9 +75,9 @@ Paste update files to the *updates* directory and generate manifest file with th
 ```
 In order to read existing manifest file and show it in app click at *Load Previous Version*.
 
-If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *manifest.xml* file is created at */app* directory.
+If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *manifest.xml* file is created at *app* directory in the installation directory.
 
-Currently for sending files to the client *HFS* is used. Setup it and you are ready to go.
+As HTTP FileServer *HFS* is used. Setup it and you are ready to go.
 
 Complete documentation can be found at http://www.rejetto.com/wiki/index.php?title=Main_Page.
 
