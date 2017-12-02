@@ -10,21 +10,21 @@ Auto update library can be downloaded and installed from Nuget.org by using foll
 Install-Package Auto_updater.auto-update-desktop -Version 1.0.0
 ```
 
-To use it create instance of the *AutoUpdater* class and pass instance of the *ApplicationInfo* to the constructor. *ApplicationInfo* class has following properties that must be provided during object creation:
+To use it create instance of the `AutoUpdater` class and pass instance of the `ApplicationInfo` to the constructor. `ApplicationInfo` class has following properties that must be provided during object creation:
 
-- *ApplicationAssembly*
-- *ApplicationIcon*
-- *ApplicationId*
-- *ApplicationName*
-- *UpdateXmlLocation*
+- `ApplicationAssembly`
+- `ApplicationIcon`
+- `ApplicationId`
+- `ApplicationName`
+- `UpdateXmlLocation`
 
-*ApplicationId* must match with the *appId* provided in the *update.xml* described later in this text, while *ApplicationName* is used in the update UI to state which application is updated. *UpdateXmlLocation* is *Uri* object that contains url to the manifest file.
+`ApplicationId` must match with the *`appId`* provided in the *`update.xml`* described later in this text, while `ApplicationName` is used in the update UI to state which application is updated. `UpdateXmlLocation` is `Uri` object that contains url to the manifest file.
 
-*AutoUpdater* class has two public methods, `*CheckForUpdate*` and `*DoUpdate*`. Both do not take any parameters. 
+`AutoUpdater` class has two public methods, `CheckForUpdate*` and `DoUpdate`. Both do not take any parameters. 
 
-`*CheckForUpdate*` checks if there is update for the application at the provided url in the *ApplicationInfo*. 
+`CheckForUpdate` checks if there is update for the application at the provided url in the `ApplicationInfo`. 
 
-`*DoUpdate*`, that actually updates application by downloading files from the url specified in the *update.xml* in the *url* tag. It downloads files over HTTP so HTTP file server is needed as described in the following section.
+`DoUpdate`, that actually updates application by downloading files from the url specified in the *`update.xml`* in the *`url`* tag. It downloads files over *HTTP* so *HTTP* file server is needed as described in the following section.
 
 Example usage:
 
@@ -47,7 +47,7 @@ Update server is used to generate *update.xml* file which is later used to compa
 
 Paste update files to the *updates* directory in the installation directory and generate manifest file with the application. 
 
-*update.xml* has following structure:
+*`update.xml`* has following structure:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -79,9 +79,9 @@ Paste update files to the *updates* directory in the installation directory and 
 ```
 In order to read existing manifest file and show it in app click at *Load Previous Version*.
 
-If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *update.xml* file is created at *app* directory in the installation directory.
+If you have pasted new app in the updates directory but you want to save *`appID`*, *launch args*, etc. just click at *Read directory*. This will create new `XmlDocument` without this values, that will be added when you click *Generate XML*. At this moment new *`update.xml`* file is created at *app* directory in the installation directory.
 
-As HTTP FileServer *HFS* is used. Setup it and provide its *URI* to the *AutoUpdate* class through *ApplicationInfo* class. 
+As *HTTP* file server *HFS* is used. Setup it and provide its *URI* to the `AutoUpdate` class through `ApplicationInfo` class. 
 
 Complete documentation can be found at: [documentation](https://www.rejetto.com/wiki/index.php?title=Main_Page).
 Download page: [download](http://www.rejetto.com/hfs/?f=dl).
