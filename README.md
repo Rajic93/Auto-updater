@@ -9,7 +9,9 @@ Auto update module for .NET applications
 ## Update Server
 
 Update server is used to generate *manifest.xml* file which is later used to compare application version and files.
+
 Paste update files to the *updates* directory and generate manifest file with the application. 
+
 *Manifest.xml* has following structure:
 
 ```
