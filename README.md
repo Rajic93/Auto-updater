@@ -20,7 +20,11 @@ To use it create instance of the *AutoUpdater* class and pass instance of the *A
 
 *ApplicationId* must match with the *appId* provided in the *update.xml* described later in this text, while *ApplicationName* is used in the update UI to state which application is updated. *UpdateXmlLocation* is *Uri* object that contains url to the manifest file.
 
-*AutoUpdater* class has two public methods, *CheckForUpdate* and *DoUpdate*. Both do not take any parameters. *CheckForUpdate* checks if there is update for the application at the provided url in the *ApplicationInfo*. *DoUpdate*, that actually updates application by downloading files from the url specified in the *update.xml* in the *url* tag. It downloads files over HTTP so HTTP file server is needed as described in the following section.
+*AutoUpdater* class has two public methods, `*CheckForUpdate*` and `*DoUpdate*`. Both do not take any parameters. 
+
+`*CheckForUpdate*` checks if there is update for the application at the provided url in the *ApplicationInfo*. 
+
+`*DoUpdate*`, that actually updates application by downloading files from the url specified in the *update.xml* in the *url* tag. It downloads files over HTTP so HTTP file server is needed as described in the following section.
 
 Example usage:
 
@@ -39,11 +43,11 @@ if (update.CheckForUpdate())
 
 ## Update Server
 
-Update server is used to generate *manifest.xml* file which is later used to compare application version and files.
+Update server is used to generate *update.xml* file which is later used to compare application version and files.
 
 Paste update files to the *updates* directory in the installation directory and generate manifest file with the application. 
 
-*Manifest.xml* has following structure:
+*update.xml* has following structure:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -75,13 +79,14 @@ Paste update files to the *updates* directory in the installation directory and 
 ```
 In order to read existing manifest file and show it in app click at *Load Previous Version*.
 
-If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *manifest.xml* file is created at *app* directory in the installation directory.
+If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *update.xml* file is created at *app* directory in the installation directory.
 
-As HTTP FileServer *HFS* is used. Setup it and you are ready to go.
+As HTTP FileServer *HFS* is used. Setup it and provide its *URI* to the *AutoUpdate* class through *ApplicationInfo* class. 
 
-Complete documentation can be found at http://www.rejetto.com/wiki/index.php?title=Main_Page.
+Complete documentation can be found at: [documentation](https://www.rejetto.com/wiki/index.php?title=Main_Page).
+Download page: [download](http://www.rejetto.com/hfs/?f=dl).
 
-Download page: http://www.rejetto.com/hfs/?f=dl.
+You are ready to go!
 
 ## TODO
 - Add File server functionalities to the *Update server* and change *HFS* with it.
