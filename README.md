@@ -1,9 +1,15 @@
 # Auto-updater
+
 Auto update module for .NET applications
+
+# Auto Update Library
+
+
 
 # Update Server
 
 Update server is used to generate *manifest.xml* file which is later used to compare application version and files.
+Paste update files to the *updates* directory and generate manifest file with the application. 
 *Manifest.xml* has following structure:
 
 ```
@@ -37,3 +43,11 @@ Update server is used to generate *manifest.xml* file which is later used to com
 In order to read existing manifest file and show it in app click at *Load Previous Version*.
 
 If you have pasted new app in the updates directory but you want to save *appID*, *launch args*, etc. just click at *Read directory*. This will create new XmlDocument without this values, that will be added when you click *Generate XML*. At this moment new *manifest.xml* file is created at */app* directory.
+
+Currently for sending files to the client *HFS* is used. 
+Complete documentation can be found at http://www.rejetto.com/wiki/index.php?title=Main_Page.
+Download page: http://www.rejetto.com/hfs/?f=dl.
+
+# TODO
+- Add File server functionalities to the *Update server* and change *HFS* with it.
+- Finish unit testing
