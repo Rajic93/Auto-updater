@@ -25,3 +25,4 @@ D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Serve
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Update Server.csproj.GenerateResource.Cache
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.exe
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Server.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update Server\obj\Debug\Update Server.csprojResolveAssemblyReference.cache

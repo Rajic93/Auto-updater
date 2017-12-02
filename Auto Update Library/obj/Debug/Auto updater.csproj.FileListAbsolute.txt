@@ -27,3 +27,4 @@ D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.csproj.GenerateResource.Cache
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.dll
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Auto Update Library\obj\Debug\Auto updater.csprojResolveAssemblyReference.cache

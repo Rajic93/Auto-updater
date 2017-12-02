@@ -78,7 +78,7 @@ namespace Auto_updater
             try
             {
                 //download files
-                string tempDir = Path.GetTempPath() + "AutoUpdate";
+                string tempDir = Path.GetTempPath() + "AutoUpdate\\updates";
                 System.IO.Directory.CreateDirectory(tempDir); 
                 new Thread(() =>
                 {

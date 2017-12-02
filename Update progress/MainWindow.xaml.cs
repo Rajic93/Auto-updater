@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -13,10 +14,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Directory = System.IO.Directory;
 
 namespace Update_progress
 {
@@ -25,13 +26,14 @@ namespace Update_progress
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public delegate void ReportProgressDelegate(string message);
-
+        
         public delegate void FinishDelegate();
 
-        private ReportProgressDelegate _report;
+        public delegate void DisableDelegate(Control ctrl);
+
+        private FileSystemActions.ReportProgressDelegate _report;
         private FinishDelegate _finish;
+        private DisableDelegate _disable;
 
         private ObservableCollection<string> _log;
 
@@ -39,28 +41,15 @@ namespace Update_progress
         private BackgroundWorker worker;
 
 
-        private string[] args;
+        private string[] _args;
+        private string _appPath;
+        private string _updatesPath;
+        private string _backupPath;
+        private string _argv = "";
+        private string _rollbackExe;
+        private string _exe;
 
-
-        string deleteFile = "Del /F /Q \"{0}\"";
-        string makeDirectory = "mkdir \"{0}\"";
-        string removeDirectory = "rmdir \"{0}\"";
-        string moveCommand = "Move /Y \"{1}\" \"{2}\"";
-        string pause4SecCommand = "Choice /C Y /N /D Y /T 1";
-        string pause2SecCommand = "Choice /C Y /N /D Y /T 1";
-        string startCommand = " Start \"\" /D \"{0}\" \"{1}\" {2}";
-
-
-        [Serializable]
-        private struct config
-        {
-            public string updatesPath;
-            public string backupPath;
-            public string appPath;
-            public bool downloaded;
-        };
-
-        private config _config;
+        private FileSystemActions.config _config;
         private bool _rollback;
         private ProcessStartInfo _info;
         private bool _fatal;
@@ -86,6 +75,7 @@ namespace Update_progress
             
             _report = Report;
             _finish = FinishUpdate;
+            _disable = Disable;
 
         }
 
@@ -93,15 +83,31 @@ namespace Update_progress
         {
             Topmost = false;
         }
+
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            args = Environment.GetCommandLineArgs();
+            _args = Environment.GetCommandLineArgs();
+            _appPath = _args[1];
+            //path of the root folder of updates
+            _updatesPath = _args[2];
+            //save to config file if in order to continue next time if canceled so not to download again
+            _backupPath = Path.Combine(_updatesPath.Substring(0, _updatesPath.Length - "\\updates".Length), "backup");
+            //return to previous app
+            _rollbackExe = _args[3];
+            //launch updated app
+            _exe = _args[4];
+            //launch args
+            for (int i = 5; i < _args.Length; i++)
+            {
+                _argv += $"\"{_args[i]}\" ";
+            }
             worker.ReportProgress(100, "Starting update.");
             new Thread(new ThreadStart(delegate
             {
                 Update();
             })).Start();
         }
+
         private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             _log.Add(e.UserState.ToString());
@@ -125,31 +131,44 @@ namespace Update_progress
                 Process.GetCurrentProcess().Kill();
                 return;
             }
-
             if (_fatal)
             {
                 Process.GetCurrentProcess().Kill();
                 return;
             }
-
-            //return to previous app
-            string exe = args[4];
-            string argv = "";
-            for (int i = 5; i < args.Length; i++)
+            if (!string.IsNullOrEmpty(_exe))
             {
-                argv += $"\"{args[i]}\" ";
-            }
-            if (!string.IsNullOrEmpty(exe))
-            {
-                _info = new ProcessStartInfo(exe);
-                _info.Arguments = argv;
+                _info = new ProcessStartInfo(_exe);
+                _info.Arguments = _argv;
             }
             if (_info == null)
                 _report("There is no exe file specified for the new app.");
-            if (_info != null)
+            else
+                Process.Start(_info);
+
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+            info.CreateNoWindow = true;
+
+            if (_config.replaceUpdateProgressExe)
             {
-                Process.Start(_info); 
+                string del = _backupPath.Substring(0, _backupPath.Length - _backupPath.Split('\\').Last().Length);
+                string script = CreateScript(_config.updateProgressSrc.Substring(0, _config.updateProgressSrc.Length - "Update progress.exe".Length - 1),
+                    _config.appPath, "Update progress.exe", del);
+                File.WriteAllText($"{Path.GetTempPath()}script.bat", script);
+                info.FileName = $"{Path.GetTempPath()}script.bat";
+                info.UseShellExecute = true;
             }
+
+            if (_config.deleteUpdateProgressExe)
+            {
+                info.Arguments = string.Format($"{FileSystemActions.Commands.Pause2SecCommand} & {FileSystemActions.Commands.DeleteFile}",
+                    $"{Directory.GetCurrentDirectory()}\\Update progress.exe");
+                info.FileName = "cmd.exe";
+            }
+
+            _disable(Finish);
+            Process.Start(info);
             Process.GetCurrentProcess().Kill();
         }
 
@@ -180,350 +199,83 @@ namespace Update_progress
             });
         }
 
+        private void Disable(Control ctrl)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                ctrl.IsEnabled = false;
+            });
+        }
+
 
         #endregion
 
         private void Update()
         {
-            //path of the root folder of installation
-            string rootPath = args[1];
-            //path of the root folder of updates
-            string rootTempPath = args[2];
-            //save to config file if in order to continue next time if canceled so not to download again
-            bool backupCreated = CreateBackUp(rootPath, rootTempPath);
-
-            if (!backupCreated)
+            _config = new FileSystemActions.config
             {
-                //delete backup
-                //
-                //
-                //
+                downloaded = true,
+                appPath = _appPath,
+                backupPath = _backupPath,
+                updatesPath = _updatesPath,
+                deleteUpdateProgressExe = false,
+                replaceUpdateProgressExe = false
+            };
+
+#if DEBUG
+            Report(_config.ToString()); 
+#endif
+
+            FileSystemActions action = new FileSystemActions
+            {
+                Config = _config,
+                Report = _report
+            };
+
+            if (!action.BackUp())
+            {
+                Directory.Delete(_backupPath, true);
                 _report("There was a problem creating backup.");
                 return;
             }
 
-            _report("Backup successfully created.");
-            
-            //path of the root folder of backup
-            string backupPath = Path.Combine(rootTempPath, "backup");
-            _config = new config
+            _report("Backup successfully created.\nUpdating application files.");
+            _disable(Abort);
+            if (!action.Update())
             {
-                downloaded = true,
-                appPath = rootPath,
-                backupPath = backupPath,
-                updatesPath = rootTempPath
-            };
-
-            _report("Updating application files.");
-            
-            bool filesUpdated = UpdateAppFiles();
-
-            if (!filesUpdated)
-            {
-                if (!Rollback(rootPath, rootTempPath))
+                if (!action.Rollback())
                 {
                     _report("Fatal error: Application not backed up correctly. It may need reinstallation.");
                     _rollback = false;
                     _fatal = true;
                 }
-                //
-                string rollbackExe = args[3];
-                string argv = "";
-                for (int i = 5; i < args.Length; i++)
+                if (!string.IsNullOrEmpty(_rollbackExe))
                 {
-                    argv += $"\"{args[i]}\" ";
-                }
-                if (!string.IsNullOrEmpty(rollbackExe))
-                {
-                    _info = new ProcessStartInfo(rollbackExe);
-                    _info.Arguments = argv;
+                    _info = new ProcessStartInfo(_rollbackExe);
+                    _info.Arguments = _argv;
                     _rollback = true;
                 }
                 _finish();
                 return;
             }
-
-            _report("Application successfully updated.");
-
             //clear backup files and downloaded updates
             _report("Deleting leftover files");
-            string tempDir = _config.updatesPath;
-            tempDir = Directory.GetDirectories(tempDir)[1];
-            filesUpdated &= DeleteLeftOverFiles(_config.appPath, tempDir);
-            _report("Deleting backup files");
-            Directory.Delete(backupPath, true);
-            _report("Deleting downloaded files");
-            Directory.Delete(rootTempPath, true);
+            bool filesUpdated = action.Clean();
             _finish();
+            _report("Application successfully updated.");
         }
 
-        private bool CreateBackUp(string appBaseDir, string tempPath)
+        private string CreateScript(string src, string dest, string file, string del)
         {
-            string backupPath = System.IO.Path.Combine(tempPath, "backup");
-            System.IO.Directory.CreateDirectory(backupPath);
-            _report("Creating application backup.");
-
-            bool result = DuplicateFileSystem(appBaseDir, backupPath);
-
-            return result;
+            //https://superuser.com/questions/1015584/compare-and-replace-files-using-a-batch-file
+            return "@ECHO ON\r\n" +
+                   "SLEEP 5" +
+                   "SETLOCAL\r\n" +
+                   $"SET SourceDir={src}\r\n" +
+                   $"SET TargetDir={dest}\r\n" +
+                   //$"SET LogFile=C:\\LogPath\\Logfile.txt\r\n" +
+                   $"ROBOCOPY \"%SourceDir%\" \"%TargetDir%\" \"{file}\" /NP /R:5 /TS /FP\r\n" +
+                   $"@RD /S /Q \"{del}\"";
         }
-
-        public bool DuplicateFileSystem(string appBaseDir, string tempDir)
-        {
-            try
-            {
-                bool result = true;
-                DirectoryInfo info = new DirectoryInfo(appBaseDir);
-                FileInfo[] files = info.GetFiles();
-                foreach (FileInfo file in files)
-                {
-                    if (File.Exists(System.IO.Path.Combine(tempDir, file.Name)))
-                        File.Delete(System.IO.Path.Combine(tempDir, file.Name));
-                    File.Copy(System.IO.Path.Combine(appBaseDir, file.Name), System.IO.Path.Combine(tempDir, file.Name));
-                    _report($"Copying file: {file.Name}");
-                    if (!File.Exists(System.IO.Path.Combine(tempDir, file.Name)))
-                    {
-                        _report($"ERROR - Failed to copy file: {file.Name}");
-                        return false;
-                    }
-                }
-                string[] directories = System.IO.Directory.GetDirectories(appBaseDir);
-                foreach (string directory in directories)
-                {
-                    if (directory.Split('\\').Last().Equals("backup"))
-                        continue;
-                    string nextTempDir = System.IO.Path.Combine(tempDir, directory.Split('\\').Last());
-                    System.IO.Directory.CreateDirectory(nextTempDir);
-                    _report($"Creating directory: {directory.Split('\\').Last()}");
-                    result &= DuplicateFileSystem(directory, nextTempDir);
-                }
-                return result;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private bool UpdateAppFiles()
-        {
-            string tempDir = _config.updatesPath;
-            tempDir = Directory.GetDirectories(tempDir)[1];
-            string appBaseDir = _config.appPath;
-
-            _report("Replacing files");
-            bool result = ReplaceFiles(appBaseDir, tempDir);
-
-            return result;
-        }
-
-        private bool ReplaceFiles(string appBaseDir, string tempDir)
-        {
-            _report($"Destination: {appBaseDir}");
-            _report($"Source: {tempDir}");
-            bool result = true;
-            DirectoryInfo info = new DirectoryInfo(tempDir);
-            FileInfo[] files = info.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                if (File.Exists(System.IO.Path.Combine(appBaseDir, file.Name)))
-                {
-                    //compute hash
-                    MD5 cypher = MD5.Create();
-                    byte[] hash = cypher.ComputeHash(File.ReadAllBytes(System.IO.Path.Combine(appBaseDir, file.Name)));
-                    byte[] hash2 = cypher.ComputeHash(File.ReadAllBytes(System.IO.Path.Combine(tempDir, file.Name)));
-                    if (hash2.Equals(hash))
-                        continue;
-                    try
-                    {
-                        _report($"Replacing file: {file.FullName}");
-                        File.Replace(System.IO.Path.Combine(tempDir, file.Name),
-                                        System.IO.Path.Combine(appBaseDir, file.Name),
-                                        System.IO.Path.Combine(appBaseDir, $"{file.Name}.bac"));
-                    }
-                    catch (IOException ioException)
-                    {
-                        _report($"{ioException.Message}");
-                        _report($"Error at file: {file.Name}");
-                        return false;
-                    }
-                }
-                else
-                {
-                    _report($"Copying file: {file.FullName} to \"{System.IO.Path.Combine(appBaseDir, file.Name)}\"");
-                    File.Copy(System.IO.Path.Combine(tempDir, file.Name), System.IO.Path.Combine(appBaseDir, file.Name));
-                    _report($"File succesfully copied");
-                }
-                if (File.Exists(System.IO.Path.Combine(appBaseDir, file.Name)))
-                    continue;
-
-                _report($"ERROR - Failed to update file: {file.Name}");
-                return false;
-            }
-
-            string[] directories = System.IO.Directory.GetDirectories(tempDir);
-            foreach (string directory in directories)
-            {
-                if (directory.Split('\\').Last().Equals("backup"))
-                    continue;
-                string nextAppBaseDir = System.IO.Path.Combine(appBaseDir, directory.Split('\\').Last());
-                _report($"Next appBaseDir: {nextAppBaseDir}");
-                if (!Directory.Exists(nextAppBaseDir))
-                {
-                    _report($"Creating directory: {directory.Split('\\').Last()}");
-                    System.IO.Directory.CreateDirectory(nextAppBaseDir);
-                }
-                result &= ReplaceFiles(nextAppBaseDir, directory);
-            }
-
-            return result;
-        }
-
-        private bool DeleteLeftOverFiles(string appBaseDir, string tempDir)
-        {
-            _report($"Application directory: {appBaseDir}");
-            _report($"Downloads directory: {tempDir}");
-            bool result = true;
-            string[] directories = Directory.GetDirectories(appBaseDir);
-            foreach (string directory in directories)
-            {
-                string nextDir = System.IO.Path.Combine(appBaseDir, directory.Split('\\').Last());
-                string nextTempDir = Path.Combine(tempDir, directory.Split('\\').Last());
-                _report($"Checking directory: {nextTempDir}");
-                if (!Directory.Exists(nextTempDir))
-                {
-                    _report($"Deleting directory: {nextTempDir}");
-                    Directory.Delete(nextDir, true);
-                    if (Directory.Exists(nextDir))
-                        return false;
-                    continue;
-                }
-                result = DeleteLeftOverFiles(nextDir, nextTempDir);
-            }
-
-            DirectoryInfo info = new DirectoryInfo(appBaseDir);
-            FileInfo[] files = info.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                _report($"Checking file: {Path.Combine(tempDir, file.Name)}");
-                if (!File.Exists(Path.Combine(tempDir, file.Name)))
-                {
-                    _report($"Deleting file: {Path.Combine(tempDir, file.Name)}");
-                    try
-                    {
-                        File.Delete(Path.Combine(appBaseDir, file.Name));
-                    }
-                    catch (Exception exception)
-                    {
-                        _report($"File not deleted: {Path.Combine(appBaseDir, file.Name)}");
-                    }
-                    //if (File.Exists(Path.Combine(appBaseDir, file.Name)))
-                    //    return false;
-                }
-            }
-
-            return result;
-        }
-
-        private bool Rollback(string appBaseDir, string tempDir)
-        {
-            string backupPath = System.IO.Path.Combine(tempDir, "backup");
-
-            bool result = ReplaceFiles(backupPath, appBaseDir);
-
-            //result &= DeleteLeftOverFiles(appBaseDir, backupPath);
-
-            return result;
-        }
-
-        /*
-        /// <summary>
-        /// Updates application.
-        /// </summary>
-        /// <param name="tempRootPath">Path of the temp directory where files are downloaded</param>
-        /// <param name="rootPath">Path of the app install directory.</param>
-        /// <param name="directory"></param>
-        /// <param name="updateLaunchArgs"></param>
-        private ProcessStartInfo UpdateApplication(object tempRootPath, string rootPath, Directory directory, string updateLaunchArgs, string exe)
-        {
-            string echo =
-                "echo Updating application...Please wait until it is done. Application will start once it is finished.";
-            string commands = $"/C Choice /C Y /N /D Y /T 5 &  Choice /C Y /N /D Y /T 15";
-
-            //string commands = $"\\C ";
-            //generate commands to execute
-            //move content to app's directory
-            commands += GenerateScript(tempRootPath, rootPath, directory, updateLaunchArgs);
-            //delete directories and files from the temp directory
-            commands += GenerateDeleteScript(tempRootPath, directory);
-            //commands exe
-            commands += String.Format(startCommand, rootPath, exe, updateLaunchArgs);
-            //close cmd
-            commands += " & exit";
-
-            //File.WriteAllText("D:\\test.bat", script);
-
-
-            ProcessStartInfo info = new ProcessStartInfo();
-            info.Arguments = commands;
-            //info.WindowStyle = ProcessWindowStyle.Hidden;
-            //info.CreateNoWindow = true;
-            info.FileName = "cmd.exe";
-            return info;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tempRootPath"></param>
-        /// <param name="rootPath"></param>
-        /// <param name="directory"></param>
-        /// <param name="updateLaunchArgs"></param>
-        /// <returns></returns>
-        private string GenerateScript(object tempRootPath, string rootPath, Directory directory, string updateLaunchArgs)
-        {
-            string retCommand = "";
-            foreach (Directory childDirectory in directory.Directories)
-            {
-                string command = pause4SecCommand + " & " + makeDirectory;
-                command = String.Format(command, $"{rootPath}\\{childDirectory.Name}");
-                retCommand += $"{command} & ";
-                retCommand += GenerateScript(tempRootPath + "\\" + childDirectory.Name, rootPath + "\\" + childDirectory.Name, childDirectory, updateLaunchArgs);
-            }
-            foreach (KeyValuePair<string, string> file in directory.Files)
-            {
-                string command = pause4SecCommand + " & " + deleteFile + " & " + pause2SecCommand + " & " + moveCommand;
-                command = String.Format(command, rootPath + "\\" + file.Key, tempRootPath + "\\" + file.Key, rootPath + "\\" + file.Key);
-                retCommand += $"{command} &";
-            }
-            return retCommand;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tempRootPath"></param>
-        /// <param name="directory"></param>
-        /// <returns></returns>
-        private string GenerateDeleteScript(object tempRootPath, Directory directory)
-        {
-            string retCommand = "";
-            foreach (KeyValuePair<string, string> file in directory.Files)
-            {
-                string command = deleteFile;
-                command = String.Format(command, tempRootPath + "\\" + file.Key);
-                retCommand += $"{command} &";
-            }
-            foreach (Directory childDirectory in directory.Directories)
-            {
-                retCommand += GenerateDeleteScript(tempRootPath + "\\" + childDirectory.Name, childDirectory);
-                string command = removeDirectory;
-                command = String.Format(command, $"{tempRootPath}\\{childDirectory.Name}");
-                retCommand += $"{command} & ";
-            }
-            return retCommand;
-        }
-        */
     }
 }

@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Auto_updater;
+using Update_progress;
 
 namespace Test_app
 {

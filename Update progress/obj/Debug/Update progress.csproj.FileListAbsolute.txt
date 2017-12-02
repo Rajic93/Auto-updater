@@ -11,3 +11,4 @@ D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Upd
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.csproj.GenerateResource.Cache
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.exe
 D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.pdb
+D:\Projects\Windows\.NET Auto Updater\Auto-updater\Update progress\obj\Debug\Update progress.csprojResolveAssemblyReference.cache

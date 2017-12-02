@@ -55,7 +55,7 @@
             // 
             this.lblProgress.Location = new System.Drawing.Point(34, 137);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(425, 13);
+            this.lblProgress.Size = new System.Drawing.Size(425, 31);
             this.lblProgress.TabIndex = 2;
             this.lblProgress.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 

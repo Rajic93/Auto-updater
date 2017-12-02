@@ -116,7 +116,7 @@ namespace Auto_updater
                 //path of the root folder of installation
                 string rootPath = Path.GetDirectoryName(currentPath);
                 //path of the root folder of updates
-                string rootTempPath = $"{Path.GetTempPath()}AutoUpdate";
+                string rootTempPath = $"{Path.GetTempPath()}AutoUpdate\\updates";
 
                 string argv = PrepareArgs(update.LaunchArgs);
                 string args =
